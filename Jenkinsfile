@@ -1,4 +1,7 @@
 pipeline {
+    triggers {
+      pollSCM '* * * * *'
+    }
     agent {
       label 'windows && (oracle || mysql || postgresql)'
     }
