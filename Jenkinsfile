@@ -6,15 +6,14 @@ pipeline {
       label 'windows && (oracle || mysql || postgresql)'
     }
     stages {
-        stage('Git') {
+        stage('Pre Build') {
             steps {
-                git branch: '**', credentialsId: '87641e3b-339c-4934-b712-b6ce02d88e2f', url: 'git@github.com:exahh/hello_world.git'
+                bat 'mvn clean'
             }
         }
         stage('Build') {
             steps {
-                git branch: '**', credentialsId: '87641e3b-339c-4934-b712-b6ce02d88e2f', url: 'git@github.com:exahh/hello_world.git'
-                bat 'mvn clean install'
+                bat 'mvn install'
             }
            post {
                 always {
